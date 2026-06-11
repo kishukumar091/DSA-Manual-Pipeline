@@ -83,7 +83,7 @@ def _add_toc(doc: Document, problems: list) -> None:
         p.paragraph_format.space_before = Pt(1)
         p.paragraph_format.space_after  = Pt(1)
 
-        num_run = p.add_run(f"  {entry.num:02d}.")
+        num_run = p.add_run(f"  {entry.number:02d}.")
         num_run.bold           = True
         num_run.font.name      = config.FONT_BODY
         num_run.font.size      = Pt(9)
@@ -138,9 +138,9 @@ def build_document(
     _add_title_banner(doc)
 
     # ── Filter + sort problems ────────────────────────────────────────────────
-    entries = sorted(PROBLEMS.values(), key=lambda e: e.num)
+    entries = sorted(PROBLEMS, key=lambda e: e.number)
     if problem_numbers:
-        entries = [e for e in entries if e.num in problem_numbers]
+        entries = [e for e in entries if e.number in problem_numbers]
 
     # ── Table of contents ────────────────────────────────────────────────────
     _add_toc(doc, entries)
@@ -153,11 +153,11 @@ def build_document(
             add_category_divider(doc, entry.category)
             prev_category = entry.category
 
-        image_path = image_map.get(entry.num)
+        image_path = image_map.get(entry.number)
         add_problem_section(doc, entry, image_path)
 
     # ── Save ─────────────────────────────────────────────────────────────────
     doc.save(output_path)
     print(f"\n✓  Document saved → {output_path}")
     print(f"   Problems   : {len(entries)}")
-    print(f"   With images: {sum(1 for e in entries if e.num in image_map)}")
+    print(f"   With images: {sum(1 for e in entries if e.number in image_map)}")

@@ -113,7 +113,7 @@ def add_problem_section(doc: Document,
     heading_p.paragraph_format.space_after    = Pt(0)
 
     # Programme badge:  [Prog 1]
-    badge = heading_p.add_run(f"  Prog {entry.num:02d}  ")
+    badge = heading_p.add_run(f"  Prog {entry.number:02d}  ")
     badge.bold           = True
     badge.font.name      = config.FONT_HEAD
     badge.font.size      = config.SIZE_H3
@@ -205,7 +205,7 @@ def add_problem_section(doc: Document,
         cap_p.paragraph_format.space_before = Pt(0)
         cap_p.paragraph_format.space_after  = Pt(18)
         c_run = cap_p.add_run(
-            f"Figure {entry.num}: Verification screenshot — {entry.title}"
+            f"Figure {entry.number}: Verification screenshot - {entry.title}"
         )
         c_run.italic         = True
         c_run.font.size      = config.SIZE_CAP
