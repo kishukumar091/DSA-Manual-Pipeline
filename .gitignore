@@ -16,8 +16,6 @@ venv/
 env/
 .env/
 
-# Output files
-*.docx
 
 # OS files
 .DS_Store
